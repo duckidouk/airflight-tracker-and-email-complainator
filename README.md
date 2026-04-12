@@ -1,6 +1,6 @@
 #  AIRFLIGHT LOGGER & EMAIL COMPLENATOR 
 
-A personal tool that tracks aircraft flying over your house, logs them, and automatically drafts complaint emails to the airport using AI.
+A personal tool that tracks annoying loud aircraft flying over your house, then logs them and automatically and drafts complaint emails to the airport using Mistral AI.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -75,7 +75,7 @@ The logger is currently deployed on [PythonAnywhere](https://www.pythonanywhere.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Vers. I - - - - - -  Known Limitations & Roadmap 
+# VERSION 1 - - - - - -  Known Limitations & Roadmap 
 
 This is V1 of the project. It definitely works but there are several improvements planned:
 
@@ -85,20 +85,25 @@ Right now API keys, email credentials and personal details are typed into the no
 # Open Source Flight Data Alternative
 FlightRadar24's API is annoyingly a paid service. The goal is to find a free/open source alternative — candidates include:
 
-# Event-Driven Detection and not polling
-Currently the script asks the API every 40 seconds for planes, regardless of whether anything is happening. This is incredibly inefficient and burns API calls unnecessarily. The plan is to switch to a push/event-based model so the system only triggers when an aircraft actually enters the coordinate bounds.
+# Event-Driven Detection.... no polling!
+Currently the script asks the API every 40 seconds for planes regardless of whether anything is happening. This is incredibly inefficient and burns API calls unnecessarily. The plan is to switch to a push and/or event-based model so the system only triggers when an aircraft actually enters the coordinate bounds.
+
+# Having to manually trigger the email
+
+In an ideal world one could sit back and endlessly email airports. Need to figure out how to make the code automatically send email at a specific time. 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Project Structure
 
-
+```
 project
-=========== API_FLIGHT_LOG.ipynb         # Polls FR24, logs flights to JSON
-=========== EMAIL_GENERATOR.ipynb        # Reads logs, drafts & sends email
-=========== flightlogs__YYYY-MM-DD.json  # Daily flight log (auto-generated)
+├── API FLIGHT LOG.ipynb
+├── EMAIL GENERATOR.ipynb
+├── flightlog_2026-04-01.json
+└── README.md
 
-
+```
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Disclaimer
@@ -107,4 +112,4 @@ This project is for personal documentation purposes only. The aim is to record h
 
 # Honest Thoughts
 
-This is meant to mostly be a joke. I was frustrated, planes were so loud and I needed to do. I built this instead of stewing and be generally frustrated.. Please don't take it too seriously. It's really a venting mechanism.
+This is meant to mostly be a joke, I was frustrated and planes were so loud! I built this instead of stewing and generally be annoyed at the sky.. Please don't take it too seriously. It's really just a venting mechanism.
