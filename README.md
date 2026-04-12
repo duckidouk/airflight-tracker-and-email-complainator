@@ -1,24 +1,26 @@
-# ✈️ Goodrich Road Flight Logger
+#  AIRFLIGHT LOGGER & EMAIL COMPLENATOR 
 
 A personal tool that tracks aircraft flying over your house, logs them, and automatically drafts complaint emails to the airport using AI.
 
----
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## What It Does
+# What It Does
 
 Two notebooks work together:
 
-**`API_FLIGHT_LOG.ipynb`** — Polls the FlightRadar24 API every 40 seconds. If a plane is detected within your coordinate bounds, it logs the flight data to a daily JSON file (e.g. `goodrichroad_logs_2025-12-31.json`).
+`API_FLIGHT_LOG.ipynb` -- Polls the FlightRadar24 API every 40 seconds. If a plane is detected within your coordinate bounds: it logs the flight data to a daily JSON file. for example: `goodrichroad_logs_2025-12-31.json`
 
-**`EMAIL_GENERATOR.ipynb`** — Reads that day's log, counts unique flights, and uses the Mistral AI API to draft a professional complaint email to the airport. It then sends it via Gmail SMTP.
+`EMAIL_GENERATOR.ipynb` -- Reads that day's log, counts unique flights and uses the Mistral AI API to draft a professional complaint email to the airport. It then sends the complain via Gmail SMTP.
 
----
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Example Log Entry
+# Example Log Entry
 
-Each detected flight is saved like this:
+Each detected flight is saved like this in json:
 
-```json
+
+
+```
 {
   "fr24_id": "3db9297b",
   "lat": 51.47462,
@@ -35,26 +37,25 @@ Each detected flight is saved like this:
 }
 ```
 
-On 31st December 2025, **48 unique flights** were logged over the course of the day — mostly British Airways (`BAW`), Shuttle (`SHT`), and various international carriers.
+On 31st December 2025, **48 unique flights** were logged over the course of the day. These were mostly British Airways (`BAW`) and Shuttle (`SHT`).
 
----
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## How to Install & Run
+# How to Install & Run
 
-### Requirements
+Requirements
 
-- Python 3.x
 - A [FlightRadar24 API token](https://fr24api.flightradar24.com/)
 - A [Mistral AI API key](https://console.mistral.ai/)
 - A Gmail account with [App Passwords](https://support.google.com/accounts/answer/185833) enabled
 
-### Install dependencies
+# Install dependencies
 
-```bash
+
 pip install fr24sdk mistralai
-```
 
-### Setup
+
+## Setup
 
 1. Open `API_FLIGHT_LOG.ipynb` and fill in:
    - `my_token` — your FlightRadar24 API token
@@ -68,56 +69,42 @@ pip install fr24sdk mistralai
 
 4. At the end of the day, run `EMAIL_GENERATOR.ipynb` to generate and send the complaint email.
 
-### Running continuously (without your laptop)
+## Running continuously 
 
-The logger is currently deployed on **[PythonAnywhere](https://www.pythonanywhere.com/)** so it runs 24/7 without needing your machine to stay on. Upload the notebook (or convert it to a `.py` script) and run it as an always-on task.
+The logger is currently deployed on [PythonAnywhere](https://www.pythonanywhere.com/) so it runs 24/7 without needing your machine to stay on. Upload the notebook (or convert it to a `.py` script) and run it as an always-on task.
 
----
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## Version 1 — Known Limitations & Roadmap
+# Vers. I - - - - - -  Known Limitations & Roadmap 
 
-This is **version 1** of the project. It works, but there are several improvements planned:
+This is V1 of the project. It definitely works but there are several improvements planned:
 
-### 🔐 Security: Move secrets to `.env`
-Right now API keys, email credentials, and personal details are typed directly into the notebooks. The next step is to use a `.env` file with `python-dotenv` so sensitive info is never hardcoded.
+# Security: Move secrets to `.env`
+Right now API keys, email credentials and personal details are typed into the notebooks. The next step is to use a `.env` file with `python-dotenv` so sensitive info is never hardcoded.
 
-```bash
-pip install python-dotenv
-```
+# Open Source Flight Data Alternative
+FlightRadar24's API is annoyingly a paid service. The goal is to find a free/open source alternative — candidates include:
 
-```python
-# .env
-FR24_TOKEN=your_token_here
-MISTRAL_KEY=your_key_here
-EMAIL=your@email.com
-EMAIL_PASSWORD=yourapppassword
-```
+# Event-Driven Detection and not polling
+Currently the script asks the API every 40 seconds for planes, regardless of whether anything is happening. This is incredibly inefficient and burns API calls unnecessarily. The plan is to switch to a push/event-based model so the system only triggers when an aircraft actually enters the coordinate bounds.
 
-### 💸 Open Source Flight Data Alternative
-FlightRadar24's API is a paid service. The goal is to find a free/open source alternative — candidates include:
-- [**OpenSky Network**](https://opensky-network.org/) — free REST API, no SDK required
-- [**dump1090**](https://github.com/flightaware/dump1090) — run your own ADS-B receiver with a cheap RTL-SDR dongle (~£25) and receive flight data locally for free
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-### ⚡ Event-Driven Detection (instead of polling)
-Currently the script asks the API "are there any planes?" every 40 seconds, regardless of whether anything is happening. This is inefficient and burns API calls unnecessarily. The plan is to switch to a **push/event-based model** — so the system only triggers when an aircraft actually enters the coordinate bounds, rather than constantly checking.
+# Project Structure
 
----
 
-## Project Structure
+project
+=========== API_FLIGHT_LOG.ipynb         # Polls FR24, logs flights to JSON
+=========== EMAIL_GENERATOR.ipynb        # Reads logs, drafts & sends email
+=========== flightlogs__YYYY-MM-DD.json  # Daily flight log (auto-generated)
 
-```
-📁 project/
-├── API_FLIGHT_LOG.ipynb         # Polls FR24, logs flights to JSON
-├── EMAIL_GENERATOR.ipynb        # Reads logs, drafts & sends email
-└── goodrichroad_logs_YYYY-MM-DD.json  # Daily flight log (auto-generated)
-```
 
----
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-## ⚠️ Disclaimer
+# Disclaimer
 
 This project is for personal documentation purposes only. The aim is to record how flight noise affects daily life and share that information with the relevant airport through legitimate channels. No illegal or spammy activity is intended.
 
-## 😅 Honestly Though
+# Honest Thoughts
 
-This is mostly a joke. I was frustrated, planes were loud, and I needed to do something with that energy — so I built this instead of just stewing about it. Please don't take it too seriously. It's a venting mechanism that happens to involve Python.
+This is meant to mostly be a joke. I was frustrated, planes were so loud and I needed to do. I built this instead of stewing and be generally frustrated.. Please don't take it too seriously. It's really a venting mechanism.
