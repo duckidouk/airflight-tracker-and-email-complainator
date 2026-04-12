@@ -1,6 +1,6 @@
 #  AIRFLIGHT LOGGER & EMAIL COMPLENATOR 
 
-A personal tool that tracks annoying loud aircraft flying over your house, then logs them and automatically and drafts complaint emails to the airport using Mistral AI.
+A personal tool that tracks annoying loud aircraft flying over your house, logs them automatically, and finally drafts a complaint email to the airport using Mistral AI.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -55,7 +55,7 @@ Requirements
 pip install fr24sdk mistralai
 
 
-## Setup
+# Setup
 
 1. Open `API_FLIGHT_LOG.ipynb` and fill in:
    - `my_token` — your FlightRadar24 API token
@@ -100,7 +100,7 @@ In an ideal world one could sit back and endlessly email airports. Need to figur
 project
 ├── API FLIGHT LOG.ipynb
 ├── EMAIL GENERATOR.ipynb
-├── flightlog_2026-04-01.json
+├── flightlog_YYYY-MM-DD.json
 └── README.md
 
 ```
