@@ -47,7 +47,7 @@ Requirements
 
 - A [FlightRadar24 API token](https://fr24api.flightradar24.com/)
 - A [Mistral AI API key](https://console.mistral.ai/)
-- A Gmail account with [App Passwords](https://support.google.com/accounts/answer/185833) enabled
+- A Gmail account with App Passwords enabled
 
 # Install dependencies
 
@@ -72,7 +72,7 @@ pip install fr24sdk mistralai
 
 ## Running continuously 
 
-The logger is currently deployed on [PythonAnywhere](https://www.pythonanywhere.com/) so it runs 24/7 without needing your machine to stay on. Upload the notebook (or convert it to a `.py` script) and run it as an always-on task.
+The logger is currently deployed on [PythonAnywhere](https://www.pythonanywhere.com/) so it runs 24/7 without needing your machine to stay on. Upload the .py and run it as an always-on task.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
