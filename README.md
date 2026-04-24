@@ -57,17 +57,18 @@ pip install fr24sdk mistralai
 
 # Setup
 
-1. Open `API_FLIGHT_LOG.ipynb` and fill in:
-   - `my_token` — your FlightRadar24 API token
-   - `bounds` — your coordinate box as `"N, S, W, E"` (e.g. `"51.49, 51.45, -0.10, -0.04"`)
+1. CREATE a `.env` and fill in those:
+   - `my_token` your FlightRadar24 API token
+   - `bounds` your coordinate box as `"N, S, W, E"` (e.g. `"51.49, 51.45, -0.10, -0.04"`)
+   - `api_key` your Mistral API key
+   - `email` your email address
+   - `password` your email password through SMTP
 
-2. Open `EMAIL_GENERATOR.ipynb` and fill in:
-   - `api_key` — your Mistral API key
-   - Your name, address, airport name, and email credentials in the relevant placeholders
 
-3. Run `API_FLIGHT_LOG.ipynb` to start logging. It will poll every 40 seconds and save a daily JSON file.
 
-4. At the end of the day, run `EMAIL_GENERATOR.ipynb` to generate and send the complaint email.
+2. Run `API_FLIGHT_LOG.ipynb` to start logging. It will poll every 40 seconds and save a daily JSON file.
+
+3. At the end of the day, run `EMAIL_GENERATOR.ipynb` to generate and send the complaint email.
 
 ## Running continuously 
 
@@ -75,12 +76,10 @@ The logger is currently deployed on [PythonAnywhere](https://www.pythonanywhere.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# VERSION 1 - - - - - -  Known Limitations & Roadmap 
+# VERSION 1.B - - - - - -  Known Limitations & Roadmap 
 
 This is V1 of the project. It definitely works but there are several improvements planned:
 
-# Security: Move secrets to `.env`
-Right now API keys, email credentials and personal details are typed into the notebooks. The next step is to use a `.env` file with `python-dotenv` so sensitive info is never hardcoded.
 
 # Open Source Flight Data Alternative
 FlightRadar24's API is annoyingly a paid service. The goal is to find a free/open source alternative — candidates include:
