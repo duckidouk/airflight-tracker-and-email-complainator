@@ -1,8 +1,15 @@
-#  AIRFLIGHT LOGGER & EMAIL COMPLENATOR 
+#  AIRFLIGHT LOGGER & EMAIL COMPLAINATOR 
 
-A personal tool that tracks annoying loud aircraft flying over your house, logs them automatically, and finally drafts a complaint email to the airport using Mistral AI.
+A personal tool that tracks annoying loud aircraft flying over your house, logs them automatically and drafts a complaint email to the airport using Mistral AI.
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+*EXAMPLE EMAIL* 
+
+
+<img width="2814" height="1358" alt="Screenshot_redacted" src="https://github.com/user-attachments/assets/f1894d6e-e6db-4649-a708-0379b831cf3c" />
+
 
 # What It Does
 
